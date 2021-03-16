@@ -6,8 +6,8 @@ def sort_and_count(arr):
         left_side = arr[:midpoint]
         right_side = arr[midpoint:]
 
-        count += sort_and_count(left_side)
-        count += sort_and_count(right_side)
+        count += sort_and_count(left_side)[1]
+        count += sort_and_count(right_side)[1]
 
         i = j = k = 0
         while i < len(left_side) and j < len(right_side):
@@ -27,17 +27,11 @@ def sort_and_count(arr):
             arr[k] = right_side[j]
             j += 1
             k += 1
-    return count
+    return arr, count
 
 
 if __name__ == '__main__':
     array = [1, 5, 3, -2, 2, 6, 90, 4, 8, 9, -3, 12]
-    print("Before:")
-    for i in array:
-        print(i)
     inversions = sort_and_count(array)
-    print("After:")
-    for i in array:
-        print(i)
-    print("This array had %s inversions." % inversions)
+    print(inversions)
 
